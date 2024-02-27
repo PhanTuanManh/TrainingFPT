@@ -134,3 +134,4 @@ C:\setup\CSharp\TrainingFPT\TrainingFPT\bin\Debug\net8.0\runtimes\win\lib\net6.0
 C:\setup\CSharp\TrainingFPT\TrainingFPT\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\setup\CSharp\TrainingFPT\TrainingFPT\obj\Debug\net8.0\TrainingFPT.csproj.AssemblyReference.cache
 C:\setup\CSharp\TrainingFPT\TrainingFPT\obj\Debug\net8.0\TrainingFPT.csproj.CopyComplete
+C:\setup\CSharp\TrainingFPT\TrainingFPT\obj\Debug\net8.0\TrainingFPT.sourcelink.json

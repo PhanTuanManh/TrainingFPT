@@ -15,6 +15,10 @@ namespace TrainingFPT.Controllers
 
         public IActionResult Index()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SessionUsername")))
+            {
+                return RedirectToAction(nameof(LoginController.Index), "Login");
+            }
             return View();
         }
 

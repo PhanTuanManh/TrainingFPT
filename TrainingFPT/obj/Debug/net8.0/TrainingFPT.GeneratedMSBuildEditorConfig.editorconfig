@@ -18,8 +18,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\setup\CSharp\TrainingFPT\TrainingFPT
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/setup/CSharp/TrainingFPT/TrainingFPT/Views/Demo/IT0503.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVtb1xJVDA1MDMuY3NodG1s
+[C:/setup/CSharp/TrainingFPT/TrainingFPT/Views/Category/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/setup/CSharp/TrainingFPT/TrainingFPT/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/setup/CSharp/TrainingFPT/TrainingFPT/Views/Home/Index.cshtml]

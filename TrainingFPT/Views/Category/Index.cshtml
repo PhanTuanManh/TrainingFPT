@@ -1,0 +1,16 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Category Page";
+    ViewData["namePage"] = "Category";
+    ViewBag.report = false;
+
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <h4> This is List Category</h4>
+        <a class="btn btn-primary" href="@Url.Action("Add","Category")"> Add Category + </a>
+    </div>
+</div>
