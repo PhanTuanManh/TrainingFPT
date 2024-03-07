@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TrainingFPT.Models;
 
 namespace TrainingFPT.Controllers
 {
@@ -17,7 +18,19 @@ namespace TrainingFPT.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+            CategoryDetail model = new CategoryDetail();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(CategoryDetail category, IFormFile PosterImage)
+        {
+            if (ModelState.IsValid)
+            {
+                // khong co loi tu phia nguoi dung
+            }
+            return View(category);
         }
     }
 }
