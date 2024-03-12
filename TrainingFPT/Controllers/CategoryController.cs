@@ -70,5 +70,21 @@ namespace TrainingFPT.Controllers
             }
             return View(category);
         }
+
+
+        [HttpGet]
+        public IActionResult Delete(int id = 0)
+        {
+            bool del = new CategoryQuery().DeleteItemCategory(id);
+            if (del)
+            {
+                TempData["statusDel"] = true;
+            }
+            else
+            {
+                TempData["statusDel"] = false;
+            }
+            return RedirectToAction(nameof(CategoryController.Index), "Category");
+        }
     }
 }

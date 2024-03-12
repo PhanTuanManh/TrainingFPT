@@ -1,6 +1,9 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
+@model TrainingFPT.Models.CategoryViewModel
+
 @{
     ViewData["Title"] = "Category Page";
     ViewData["namePage"] = "Category";
@@ -9,6 +12,7 @@
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 
     bool statusAdd = Convert.ToBoolean(TempData["saveStatus"]);
+    bool statusDel = Convert.ToBoolean(TempData["statusDel"]);
 }
 <div class="row">
     <div class="col-sm-12 col-md-12">
@@ -20,10 +24,57 @@
             {
                 <div class="text-success my-3"> Add successfully</div>
             }
-            else
+            else if (!statusAdd)
             {
                 <div class="text-danger my-3"> Add Failure</div>
             }
         }
+        @if (TempData["statusDel"] != null)
+        {
+            @if (statusDel)
+            {
+                <div class="text-success my-3"> Delete successfully</div>
+            }
+            else if (!statusDel)
+            {
+                <div class="text-danger my-3"> Delete Failure</div>
+            }
+        }
+        <table class="table table-striped table-bordered mt-3">
+            <thead class="table-primary">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th colspan="2" width="10%" class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CategoryDetailList)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td width="10%">
+                            <img alt="@item.Name" class="img-fluid" src="/uploads/images/@item.PosterNameImage" />
+                        </td>
+                        <td>@item.Description</td>
+                        <td>@item.Status</td>
+                        <td>@item.CreatedAt</td>
+                        <td>@item.UpdatedAt</td>
+                        <td>
+                            <a class="btn btn-info" href="@Url.Action("Edit", "Category", new {id = @item.Id})">Edit</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", "Category", new {id = @item.Id})"> Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>

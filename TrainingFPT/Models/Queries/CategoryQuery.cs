@@ -5,6 +5,26 @@ namespace TrainingFPT.Models.Queries
 {
     public class CategoryQuery
     {
+        // viet method xoa category
+        public bool DeleteItemCategory(int id = 0)
+        {
+            bool statusDelete = false;
+            using (SqlConnection connection = Database.GetSqlConnection())
+            {
+                string sqlQuery = "UPDATE [Categories] SET [DeletedAt] = @deletedAt WHERE [Id] = @id";
+                SqlCommand cmd = new SqlCommand(sqlQuery, connection);
+                connection.Open();
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@deletedAt", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                cmd.ExecuteNonQuery();
+                statusDelete = true;
+                connection.Close();
+            }
+            // false : ko xoa dc - true : xoa thanh cong
+            return statusDelete;
+        }
+
+
         // viet method insert category
         public int InsertItemCategory(
             string nameCategory,
@@ -37,7 +57,7 @@ namespace TrainingFPT.Models.Queries
             List<CategoryDetail> category = new List<CategoryDetail>();
             using (SqlConnection conn = Database.GetSqlConnection())
             {
-                string sqlQuery = "SELECT * FROM [Categories]";
+                string sqlQuery = "SELECT * FROM [Categories] WHERE [DeletedAt] IS NULL";
                 SqlCommand cmd = new SqlCommand(sqlQuery, conn);
                 conn.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
