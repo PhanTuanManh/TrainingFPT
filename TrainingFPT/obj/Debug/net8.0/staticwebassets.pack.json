@@ -7665,6 +7665,10 @@
       "PackagePath": "staticwebassets\\training\\vendor\\jquery\\jquery.slim.min.map"
     },
     {
+      "Id": "C:\\setup\\CSharp\\TrainingFPT\\TrainingFPT\\wwwroot\\uploads\\images\\8e9c37f1-ee7a-48ab-9c32-d79467bb1110-2024-03-12.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\8e9c37f1-ee7a-48ab-9c32-d79467bb1110-2024-03-12.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TrainingFPT.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

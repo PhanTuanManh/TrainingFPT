@@ -7,10 +7,23 @@
     ViewBag.report = false;
 
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
+
+    bool statusAdd = Convert.ToBoolean(TempData["saveStatus"]);
 }
 <div class="row">
     <div class="col-sm-12 col-md-12">
         <h4> This is List Category</h4>
         <a class="btn btn-primary" href="@Url.Action("Add","Category")"> Add Category + </a>
+        @if (TempData["saveStatus"] != null)
+        {
+            @if (statusAdd)
+            {
+                <div class="text-success my-3"> Add successfully</div>
+            }
+            else
+            {
+                <div class="text-danger my-3"> Add Failure</div>
+            }
+        }
     </div>
 </div>
