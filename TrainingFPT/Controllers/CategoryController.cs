@@ -8,7 +8,7 @@ namespace TrainingFPT.Controllers
     public class CategoryController : Controller
     {
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string SearchString, string Status)
         {
             //if (string.IsNullOrEmpty(HttpContext.Session.GetString("SessionUsername")))
             //{
@@ -17,7 +17,7 @@ namespace TrainingFPT.Controllers
 
             CategoryViewModel categoryViewModel = new CategoryViewModel();
             categoryViewModel.CategoryDetailList = new List<CategoryDetail>();
-            var dataCategory = new CategoryQuery().GetAllCategories();
+            var dataCategory = new CategoryQuery().GetAllCategories(SearchString, Status);
             foreach (var item in dataCategory)
             {
                 categoryViewModel.CategoryDetailList.Add(new CategoryDetail
@@ -31,6 +31,8 @@ namespace TrainingFPT.Controllers
                     UpdatedAt = item.UpdatedAt
                 });
             }
+            ViewData["keyword"] = SearchString;
+            ViewBag.Status = Status;
             return View(categoryViewModel);
         }
 
@@ -85,6 +87,49 @@ namespace TrainingFPT.Controllers
                 TempData["statusDel"] = false;
             }
             return RedirectToAction(nameof(CategoryController.Index), "Category");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id = 0)
+        {
+            CategoryDetail categoryDetail = new CategoryQuery().GetDataCategoryById(id);
+            return View(categoryDetail);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(CategoryDetail categoryDetail, IFormFile PosterImage)
+        {
+            try
+            {
+                var detail = new CategoryQuery().GetDataCategoryById(categoryDetail.Id);
+                string uniquePosterImage = detail.PosterNameImage; // lay lai ten anh cu truoc khi thay anh moi (neu co)
+                // nguoi dung co muon thay anh poster category hay ko?
+                if (categoryDetail.PosterImage != null)
+                {
+                    // co muon thay doi anh
+                    uniquePosterImage = UploadFileHelper.UploadFile(PosterImage);
+                }
+                bool update = new CategoryQuery().UpdateCategoryById(
+                    categoryDetail.Name,
+                    categoryDetail.Description,
+                    uniquePosterImage,
+                    categoryDetail.Status,
+                    categoryDetail.Id );
+                if (update)
+                {
+                    TempData["updateStatus"] = true;
+                }
+                else
+                {
+                    TempData["updateStatus"] = false;
+                }
+                return RedirectToAction(nameof(CategoryController.Index), "Category");
+            }
+            catch (Exception ex)
+            {
+                // return Ok(ex.Message);
+                return View(categoryDetail);
+            }
         }
     }
 }

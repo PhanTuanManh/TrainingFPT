@@ -7665,12 +7665,24 @@
       "PackagePath": "staticwebassets\\training\\vendor\\jquery\\jquery.slim.min.map"
     },
     {
+      "Id": "C:\\setup\\CSharp\\TrainingFPT\\TrainingFPT\\wwwroot\\uploads\\images\\3a127905-cf80-40cf-9977-48d47faf8b71-2024-03-19.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\3a127905-cf80-40cf-9977-48d47faf8b71-2024-03-19.jpg"
+    },
+    {
       "Id": "C:\\setup\\CSharp\\TrainingFPT\\TrainingFPT\\wwwroot\\uploads\\images\\40317784-e8f6-4d30-aa59-91d76a6563d9-2024-03-12.jpg",
       "PackagePath": "staticwebassets\\uploads\\images\\40317784-e8f6-4d30-aa59-91d76a6563d9-2024-03-12.jpg"
     },
     {
+      "Id": "C:\\setup\\CSharp\\TrainingFPT\\TrainingFPT\\wwwroot\\uploads\\images\\54c89a04-b29c-4280-af8e-c6d2256447b4-2024-03-12.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\54c89a04-b29c-4280-af8e-c6d2256447b4-2024-03-12.jpg"
+    },
+    {
       "Id": "C:\\setup\\CSharp\\TrainingFPT\\TrainingFPT\\wwwroot\\uploads\\images\\8e9c37f1-ee7a-48ab-9c32-d79467bb1110-2024-03-12.jpg",
       "PackagePath": "staticwebassets\\uploads\\images\\8e9c37f1-ee7a-48ab-9c32-d79467bb1110-2024-03-12.jpg"
+    },
+    {
+      "Id": "C:\\setup\\CSharp\\TrainingFPT\\TrainingFPT\\wwwroot\\uploads\\images\\df7d9b8d-5589-4a43-a876-579a565d8725-2024-03-12.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\df7d9b8d-5589-4a43-a876-579a565d8725-2024-03-12.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TrainingFPT.Microsoft.AspNetCore.StaticWebAssets.props",
