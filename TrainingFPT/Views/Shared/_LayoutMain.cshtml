@@ -22,6 +22,8 @@
 
     <!-- Custom styles for this template-->
     <link href="~/training/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="~/training/css/mainlayout.css" rel="stylesheet">
+    
 
 </head>
 
@@ -35,12 +37,9 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
                 <div class="sidebar-brand-text mx-3">FPT Traning</div>
             </a>
-
+            
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
@@ -51,6 +50,8 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+             @if (@HttpContextAccessor.HttpContext.Session.GetString("SessionRoleId") == "2")
+             {
             <!-- Divider -->
             <hr class="sidebar-divider"/>
             <li class="nav-item active">
@@ -74,6 +75,46 @@
                 </a>
             </li>
             <hr class="sidebar-divider">
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "Trainee")">
+                        <i class="fas fa-fw fa-solid fa-list"></i>
+                    <span>Manage Trainee</span>
+                </a>
+            </li>
+            <hr class="sidebar-divider">
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "Trainer")">
+                        <i class="fas fa-fw fa-solid fa-list"></i>
+                    <span>Manage Trainer</span>
+                </a>
+            </li>
+            
+                <hr class="sidebar-divider">
+                <li class="nav-item active">
+                    <a class="nav-link" href="@Url.Action("Index", "TrainerTopic")">
+                        <i class="fas fa-fw fa-solid fa-list"></i>
+                        <span>TrainerTopic</span>
+                </a>
+            </li>
+            }
+            @if (@HttpContextAccessor.HttpContext.Session.GetString("SessionRoleId") == "1")
+            {
+                <hr class="sidebar-divider">
+                <li class="nav-item active">
+                    <a class="nav-link" href="@Url.Action("Index", "TrainingStaff")">
+                        <i class="fas fa-fw fa-solid fa-list"></i>
+                        <span>Manage TrainingStaff</span>
+                    </a>
+                </li>
+                <hr class="sidebar-divider">
+                <li class="nav-item active">
+                    <a class="nav-link" href="@Url.Action("Index", "Trainer")">
+                        <i class="fas fa-fw fa-solid fa-list"></i>
+                        <span>Manage Trainer</span>
+                    </a>
+                </li>
+                <hr class="sidebar-divider">
+            }
         </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
@@ -373,7 +414,9 @@
     <!-- Page level custom scripts -->
     <script src="~/training/js/demo/chart-area-demo.js"></script>
     <script src="~/training/js/demo/chart-pie-demo.js"></script> *@
-
+    <script>
+        var navItem = document.
+    </script>
 </body>
 
 </html>

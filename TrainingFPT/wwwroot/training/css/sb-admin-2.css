@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Start Bootstrap - SB Admin 2 v4.1.3 (https://startbootstrap.com/theme/sb-admin-2)
  * Copyright 2013-2021 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/LICENSE)
@@ -9797,9 +9797,24 @@ a:focus {
 }
 
 #wrapper #content-wrapper {
-  background-color: #f8f9fc;
-  width: 100%;
-  overflow-x: hidden;
+        position: relative; /* Đặt position là relative để phù hợp với position absolute của layer opacity */
+        width: 100%;
+        overflow-x: hidden;
+        /* Thêm background image và opacity */
+        background-image: url('https://th.bing.com/th/id/R.bde71b796a25c44a2e1355f040342fa0?rik=yOs4iDM%2fEQdoXQ&pid=ImgRaw&r=0');
+        background-size: cover; /* Đảm bảo background image hiển thị đầy đủ trên toàn bộ phần nền */
+}
+
+    /* Tạo lớp overlay opacity */
+#wrapper #content-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(248, 249, 252, 0.5); /* Màu nền với độ trong suốt */
+    z-index: 1; /* Đảm bảo lớp overlay nằm phía trên background image */
 }
 
 #wrapper #content-wrapper #content {
@@ -9904,6 +9919,8 @@ a:focus {
   background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
   background-size: cover;
 }
+
+
 
 .bg-gradient-secondary {
   background-color: #858796;
@@ -10229,6 +10246,7 @@ a:focus {
   border: none;
   overflow: hidden;
 }
+
 
 .topbar .dropdown-list .dropdown-header {
   background-color: #4e73df;

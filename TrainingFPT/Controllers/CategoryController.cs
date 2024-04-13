@@ -10,10 +10,10 @@ namespace TrainingFPT.Controllers
         [HttpGet]
         public IActionResult Index(string SearchString, string Status)
         {
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString("SessionUsername")))
-            //{
-            //    return RedirectToAction(nameof(LoginController.Index), "Login");
-            //}
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SessionUsername")))
+            {
+                return RedirectToAction(nameof(LoginController.Index), "Login");
+            }
 
             CategoryViewModel categoryViewModel = new CategoryViewModel();
             categoryViewModel.CategoryDetailList = new List<CategoryDetail>();
@@ -47,11 +47,36 @@ namespace TrainingFPT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(CategoryDetail category, IFormFile PosterImage)
         {
+            if (PosterImage != null && PosterImage.Length > 0)
+            {
+                // Kiểm tra loại tệp tin của PosterImage
+                var allowedExtensions = new string[] { ".png", ".jpg", ".jpeg" };
+                var fileExtension = Path.GetExtension(PosterImage.FileName).ToLower();
+
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    ModelState.AddModelError("PosterImage", "Invalid file format. Only PNG, JPG, and JPEG formats are allowed.");
+                    // Trả về View với lỗi
+                    return View(category);
+                }
+
+                // Kiểm tra kích thước của PosterImage
+                var maxSize = 5 * 1024 * 1024; // 5MB
+                if (PosterImage.Length > maxSize)
+                {
+                    ModelState.AddModelError("PosterImage", $"Maximum allowed file size is {maxSize} bytes.");
+                    // Trả về View với lỗi
+                    return View(category);
+                }
+            }
+
+            // ModelState.IsValid sẽ kiểm tra các điều kiện đối với các thuộc tính khác của category
             if (ModelState.IsValid)
             {
-                // khong co loi tu phia nguoi dung
-                // upload file va lay dc ten file save database
+                // Không có lỗi từ phía người dùng
+                // Upload file và lấy tên file để lưu vào cơ sở dữ liệu
                 string filePosterImage = UploadFileHelper.UploadFile(PosterImage);
+
                 try
                 {
                     int idInsetCate = new CategoryQuery().InsertItemCategory(category.Name, category.Description, filePosterImage, category.Status);
@@ -70,8 +95,11 @@ namespace TrainingFPT.Controllers
                 }
                 return RedirectToAction(nameof(CategoryController.Index), "Category");
             }
+
+            // Nếu có lỗi ModelState.IsValid, trả về View với dữ liệu của category
             return View(category);
         }
+
 
 
         [HttpGet]
@@ -102,19 +130,43 @@ namespace TrainingFPT.Controllers
             try
             {
                 var detail = new CategoryQuery().GetDataCategoryById(categoryDetail.Id);
-                string uniquePosterImage = detail.PosterNameImage; // lay lai ten anh cu truoc khi thay anh moi (neu co)
-                // nguoi dung co muon thay anh poster category hay ko?
-                if (categoryDetail.PosterImage != null)
+                string uniquePosterImage = detail.PosterNameImage; // Lấy lại tên ảnh cũ trước khi thay ảnh mới (nếu có)
+
+                // Người dùng có muốn thay ảnh đại diện hay không?
+                if (PosterImage != null && PosterImage.Length > 0)
                 {
-                    // co muon thay doi anh
+                    // Kiểm tra loại tệp tin của PosterImage
+                    var allowedExtensions = new string[] { ".png", ".jpg", ".jpeg" };
+                    var fileExtension = Path.GetExtension(PosterImage.FileName).ToLower();
+
+                    if (!allowedExtensions.Contains(fileExtension))
+                    {
+                        ModelState.AddModelError("PosterImage", "Invalid file format. Only PNG, JPG, and JPEG formats are allowed.");
+                        // Trả về View với lỗi
+                        return View(categoryDetail);
+                    }
+
+                    // Kiểm tra kích thước của PosterImage
+                    var maxSize = 5 * 1024 * 1024; // 5MB
+                    if (PosterImage.Length > maxSize)
+                    {
+                        ModelState.AddModelError("PosterImage", $"Maximum allowed file size is {maxSize} bytes.");
+                        // Trả về View với lỗi
+                        return View(categoryDetail);
+                    }
+
+                    // Người dùng muốn thay đổi ảnh, thực hiện upload ảnh mới
                     uniquePosterImage = UploadFileHelper.UploadFile(PosterImage);
                 }
+
+                // Tiến hành cập nhật thông tin danh mục
                 bool update = new CategoryQuery().UpdateCategoryById(
                     categoryDetail.Name,
                     categoryDetail.Description,
                     uniquePosterImage,
                     categoryDetail.Status,
-                    categoryDetail.Id );
+                    categoryDetail.Id);
+
                 if (update)
                 {
                     TempData["updateStatus"] = true;
@@ -123,13 +175,15 @@ namespace TrainingFPT.Controllers
                 {
                     TempData["updateStatus"] = false;
                 }
+
                 return RedirectToAction(nameof(CategoryController.Index), "Category");
             }
             catch (Exception ex)
             {
-                // return Ok(ex.Message);
+                // Xử lý ngoại lệ ở đây
                 return View(categoryDetail);
             }
         }
+
     }
 }
