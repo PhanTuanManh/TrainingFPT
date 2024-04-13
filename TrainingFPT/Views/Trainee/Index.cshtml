@@ -1,0 +1,125 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model TrainingFPT.Models.UserViewModel
+@{
+    ViewData["Title"] = "Trainee Page";
+    ViewData["namePage"] = "Trainee";
+    ViewBag.report = false;
+
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    bool statusAdd = Convert.ToBoolean(TempData["saveStatus"]);
+    bool statusDel = Convert.ToBoolean(TempData["statusDel"]);
+    bool statusUpdate = Convert.ToBoolean(TempData["updateStatus"]);
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <h4> This is List Trainee</h4>
+        <a class="btn btn-primary" href="@Url.Action("Add","Trainee")"> Add Trainee + </a>
+        <form asp-action="Index" method="get" class="my-3">
+            <div class="form-group mb-3">
+                <div class="mb-0">
+                    Find By Name: <input name="SearchString" value="@ViewData["keyword"]" />
+                    <span></span>
+                    Filter by:
+                    <select name="Status">
+                        <option value="">--Choose Status --</option>
+                        @if (ViewBag.Status == "Active")
+                        {
+                            <option value="Active" selected="selected">Active</option>
+                        }
+                        else
+                        {
+                            <option value="Active">Active</option>
+                        }
+                        @if (ViewBag.Status == "Deactive")
+                        {
+                            <option value="Deactive" selected="selected">Deactive</option>
+                        }
+                        else
+                        {
+                            <option value="Deactive">Deactive</option>
+                        }
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-sm"> Search and Filter</button>
+                    <span></span>
+                    <a asp-action="Index">Back to lists</a>
+                </div>
+            </div>
+        </form>
+        @if (TempData["saveStatus"] != null)
+        {
+            @if (statusAdd)
+            {
+                <div class="text-success my-3"> Add successfully</div>
+            }
+            else
+            {
+                <div class="text-danger my-3"> Add Failure</div>
+            }
+        }
+        @if (TempData["statusDel"] != null)
+        {
+            @if (statusDel)
+            {
+                <div class="text-success my-3"> Delete successfully</div>
+            }
+            else
+            {
+                <div class="text-danger my-3"> Delete Failure</div>
+            }
+        }
+        @if (TempData["UpdateStatus"] != null)
+        {
+            @if (statusUpdate)
+            {
+                <div class="text-success my-3"> Update successfully</div>
+            }
+            else
+            {
+                <div class="text-danger my-3"> Update Failure</div>
+            }
+        }
+
+        <table class="table table-striped table-bordered mt-3">
+            <thead class="table-primary">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Avartar</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th colspan="3" width="10%" class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.UserDetailList)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.UserName</td>
+                        <td>
+                            <div style="width: 200px; height: 200px;border-radius: 50%;overflow: hidden;">
+                            <img width="100%" height="auto" style="display:block"  alt="@item.Avatar" src="/uploads/images/@item.Avatar"  />
+                            </div>
+                        </td>
+                        <td>@item.Email</td>
+                        <td>@item.Status</td>
+                        <td>@item.Gender</td>
+                        <td>@item.Address</td>
+                        <td><a class="btn btn-info" href="@Url.Action("Edit", "Trainee", new {id = item.Id})">Edit</a></td>
+                        <td>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", "Trainee", new {id = item.Id})">Delete</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" href="@Url.Action("ViewDetail", "Trainee", new {id = item.Id})">View</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

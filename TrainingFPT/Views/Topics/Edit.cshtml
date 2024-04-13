@@ -1,0 +1,102 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model TrainingFPT.Models.TopicDetail
+@{
+    ViewData["Title"] = "Topics Page";
+    ViewData["namePage"] = "Topic";
+    ViewBag.report = false;
+
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+
+}
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <a class="btn btn-primary" href="@Url.Action("Index", "Topics")"> Back to list Topics </a>
+        <div class="card card-primary my-3">
+            <div class="card-header">
+                <h5> Edit Topic</h5>
+            </div>
+            <div class="card-body">
+                <form enctype="multipart/form-data" asp-action="Edit">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3">
+                                <label asp-for="Name"></label>
+                                <input type="text" asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                                <input type="hidden" asp-for="Id" />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="Status"></label>
+                                <select asp-for="Status" class="form-control">
+                                    <option value="Active"> --- Active ---</option>
+                                    <option value="Deactive"> --- Deactive ---</option>
+                                </select>
+                                <span asp-validation-for="Status"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3">
+                                <label asp-for="Like"></label>
+                                <input asp-for="Like" type="number" class="form-control" />
+                                <span asp-validation-for="Like" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+
+                                <label asp-for="NameCourse"></label>
+                                <select asp-for="CourseId" class=" form-control">
+                                    @foreach (var item in ViewBag.topicViewModel)
+                                    {
+                                        <option value="@item.CourseId"> @item.NameCourse </option>
+                                    }
+                                </select>
+                                </select>
+                                <span asp-validation-for="CourseId"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3">
+                                <label asp-for="Star"></label>
+                                <input asp-for="Star" type="number" class="form-control" />
+                                <span asp-validation-for="Star" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="VideoFile"></label>
+                                <input type="file" asp-for="VideoFile" class="form-control" />
+                                <span asp-validation-for="VideoFile"></span>
+                                <video width="200" height="100" style="margin-top:5px;" controls>
+                                    <source src="/uploads/images/@Model.NameVideo" type="video/mp4">
+                                </video>
+                              
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="DocumentFile"></label>
+                                <input type="file" asp-for="DocumentFile" class="form-control" />
+                                <span asp-validation-for="DocumentFile"></span>
+                                <a href="/uploads/images/@Model.DocumentNameTopic" download>Download</a>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="AudioFile"></label>
+                                <input type="file" asp-for="AudioFile" class="form-control" />
+                                <span asp-validation-for="AudioFile"></span>
+                                <audio controls>
+                                    <source src="/uploads/images/@Model.NameAudio" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="com-sm-12 col-md-6">
+
+                            <div class="form-group mb-3">
+                                <label label asp-for="Description"></label>
+                                <textarea label asp-for="Description" class="form-control" rows="5"></textarea>
+                            </div>
+
+                            <button class="btn btn-primary" type="submit"> Save </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

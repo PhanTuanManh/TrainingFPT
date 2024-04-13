@@ -408,3 +408,4 @@ D:\DEV\AD-IT0503-ASP-MVC\TrainingFPT\obj\Debug\net8.0\refint\TrainingFPT.dll
 D:\DEV\AD-IT0503-ASP-MVC\TrainingFPT\obj\Debug\net8.0\TrainingFPT.pdb
 D:\DEV\AD-IT0503-ASP-MVC\TrainingFPT\obj\Debug\net8.0\TrainingFPT.genruntimeconfig.cache
 D:\DEV\AD-IT0503-ASP-MVC\TrainingFPT\obj\Debug\net8.0\ref\TrainingFPT.dll
+D:\DEV\AD-IT0503-ASP-MVC\TrainingFPT\obj\Debug\net8.0\TrainingFPT.sourcelink.json

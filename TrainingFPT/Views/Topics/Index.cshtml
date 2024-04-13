@@ -1,0 +1,159 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model TrainingFPT.Models.TopicViewModel
+@{
+    ViewData["Title"] = "Topics  Page";
+    ViewData["namePage"] = "Topic";
+    ViewBag.report = false;
+
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    bool statusAdd = Convert.ToBoolean(TempData["saveStatus"]);
+    bool statusDel = Convert.ToBoolean(TempData["statusDel"]);
+    bool statusUpdate = Convert.ToBoolean(TempData["updateStatus"]);
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <h4> This is List Topic</h4>
+        <a class="btn btn-primary" href="@Url.Action("Add","Topics")"> Add Topic + </a>
+        <form asp-action="Index" method="get" class="my-3">
+            <div class="form-group mb-3">
+                <div class="mb-0">
+                    Find By Name: <input name="SearchString" value="@ViewData["keyword"]" />
+                    <span></span>
+                    Filter by:
+                    <select name="Status">
+                        <option value="">--Choose Status --</option>
+                        @if (ViewBag.Status == "Active")
+                        {
+                            <option value="Active" selected="selected">Active</option>
+                        }
+                        else
+                        {
+                            <option value="Active">Active</option>
+                        }
+                        @if (ViewBag.Status == "Deactive")
+                        {
+                            <option value="Deactive" selected="selected">Deactive</option>
+                        }
+                        else
+                        {
+                            <option value="Deactive">Deactive</option>
+                        }
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-sm"> Search and Filter</button>
+                    <span></span>
+                    <a asp-action="Index">Back to lists</a>
+                </div>
+            </div>
+        </form>
+        @if (TempData["saveStatus"] != null)
+        {
+            @if (statusAdd)
+            {
+                <div class="text-success my-3"> Add successfully</div>
+            }
+            else
+            {
+                <div class="text-danger my-3"> Add Failure</div>
+            }
+        }
+        @if (TempData["statusDel"] != null)
+        {
+            @if (statusDel)
+            {
+                <div class="text-success my-3"> Delete successfully</div>
+            }
+            else
+            {
+                <div class="text-danger my-3"> Delete Failure</div>
+            }
+        }
+        @if (TempData["UpdateStatus"] != null)
+        {
+            @if (statusUpdate)
+            {
+                <div class="text-success my-3"> Update successfully</div>
+            }
+            else
+            {
+                <div class="text-danger my-3"> Update Failure</div>
+            }
+        }
+
+        <table class="table table-striped table-bordered mt-3">
+            <thead class="table-primary">
+                <tr>
+                    <th>ID</th>
+                    <th>Course</th>
+                    <th>Name</th>
+                    <th>Video</th>
+                    <th>Audio</th>
+                    <th>Document</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    
+                    <th>Created At</th>
+                    <th>Update At</th>
+                    <th colspan="2" width="10%" class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TopicDetailList)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.NameCourse</td>
+                        <td>@item.Name</td>
+                        <td width="20%">
+                            @if (item.NameVideo != "Null")
+                            {
+                                <video width="50%" controls>
+                                    <source src="/uploads/images/@item.NameVideo" type="video/mp4">
+                                </video>
+                            }
+                            else
+                            {
+                                <p>No Video</p>
+                            }
+
+                        </td>
+                        <td width="25%">
+                            @if (item.NameAudio != "Null")
+                            {
+                                <audio controls  style="width: 100%; height: 40px;">
+                                    <source src="/uploads/images/@item.NameAudio" type="audio/mpeg">
+                                </audio>
+                            }
+                            else
+                            {
+                                <p>No Audio</p>
+                            }
+                        </td>
+                        <td>
+                            <p>Document</p>
+                            @if (item.DocumentNameTopic != "Null")
+                            {
+                                <a href="/uploads/images/@item.DocumentNameTopic" download>Download</a>
+                            }
+                            else
+                            {
+                                <p>No Document</p>
+                            }
+                        </td>
+                        <td>@item.Description</td>
+                        <td>@item.Status</td>
+                       
+                        <td>@item.CreatedAt</td>
+                        <td>@item.UpdatedAt</td>
+                        <td><a class="btn btn-info" href="@Url.Action("Edit", "Topics", new {id = item.Id})">Edit</a></td>
+                        <td>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", "Topics", new {id = item.Id})">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

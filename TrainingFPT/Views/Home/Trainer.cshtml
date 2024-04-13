@@ -1,0 +1,102 @@
+﻿@using Microsoft.AspNetCore.Session
+@model TrainingFPT.Models.UserViewModel
+@{
+    ViewData["Title"] = "Trainee Page";
+    ViewData["namePage"] = "Trainee";
+    ViewBag.report = false;
+
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    bool statusAdd = Convert.ToBoolean(TempData["saveStatus"]);
+    bool statusDel = Convert.ToBoolean(TempData["statusDel"]);
+    bool statusUpdate = Convert.ToBoolean(TempData["updateStatus"]);
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <h4> This is List Trainer</h4>
+        <form asp-action="Index" method="get" class="my-3">
+            <div class="form-group mb-3">
+                <div class="mb-0">
+                    Find By Name: <input name="SearchString" value="@ViewData["keyword"]" />
+                    <span></span>
+                    Filter by:
+                    <select name="Status">
+                        <option value="">--Choose Status --</option>
+                        @if (ViewBag.Status == "Active")
+                        {
+                            <option value="Active" selected="selected">Active</option>
+                        }
+                        else
+                        {
+                            <option value="Active">Active</option>
+                        }
+                        @if (ViewBag.Status == "Deactive")
+                        {
+                            <option value="Deactive" selected="selected">Deactive</option>
+                        }
+                        else
+                        {
+                            <option value="Deactive">Deactive</option>
+                        }
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-sm"> Search and Filter</button>
+                    <span></span>
+                    <a asp-action="Index">Back to lists</a>
+                </div>
+            </div>
+        </form>
+        @if (TempData["saveStatus"] != null)
+        {
+            @if (statusAdd)
+            {
+                <div class="text-success my-3"> Add successfully</div>
+            }
+            else
+            {
+                <div class="text-danger my-3"> Add Failure</div>
+            }
+        }
+        @if (TempData["statusDel"] != null)
+        {
+            @if (statusDel)
+            {
+                <div class="text-success my-3"> Delete successfully</div>
+            }
+            else
+            {
+                <div class="text-danger my-3"> Delete Failure</div>
+            }
+        }
+        @if (TempData["UpdateStatus"] != null)
+        {
+            @if (statusUpdate)
+            {
+                <div class="text-success my-3"> Update successfully</div>
+            }
+            else
+            {
+                <div class="text-danger my-3"> Update Failure</div>
+            }
+        }
+
+        <table class="table table-striped table-bordered mt-3">
+            <thead class="table-primary">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                 
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.UserDetailList)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.UserName</td>
+                    
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

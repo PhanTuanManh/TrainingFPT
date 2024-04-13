@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model TrainingFPT.Models.TrainerTopicDetail
+@{
+    ViewData["Title"] = "TrainerTopic Page";
+    ViewData["namePage"] = "TrainerTopic";
+    ViewBag.report = false;
+
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    bool statusAdd = Convert.ToBoolean(TempData["saveStatus"]);
+    bool statusDel = Convert.ToBoolean(TempData["statusDel"]);
+    bool statusUpdate = Convert.ToBoolean(TempData["updateStatus"]);
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <h4> This is List Category</h4>
+         <div class="card-body">
+                <form enctype="multipart/form-data" asp-action="Add">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3">
+                                <label asp-for="TopicName"></label>
+                            <select asp-for="TopicId" class="form-control">
+                                @foreach (var item in ViewBag.topic)
+                                {
+                                    <option value="@item.TopicId"> @item.TopicName </option>
+                                }
+                                </select>
+                            <span asp-validation-for="TopicId"></span>
+                            </div>
+                        </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="UserName"></label>
+                            <select asp-for="UserId" class="form-control">
+                                @foreach (var item in ViewBag.topic)
+                                {
+                                    <option value="@item.UserId"> @item.UserName </option>
+                                }
+                            </select>
+                            <span asp-validation-for="UserId"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <button class="btn btn-primary" type="submit"> Save </button>
+                        </div>
+                     </div>
+                 </form>
+                 </div>
+</div>
