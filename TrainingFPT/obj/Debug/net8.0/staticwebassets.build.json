@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BP4AU9/yTcY39rp6mbKU6d2uOrjswI1WxzYjOkGoxEs=",
+  "Hash": "PnJbzKQ17wINWvtENlNF08czOg9Nnw2DBcOz0vsEvF8=",
   "Source": "TrainingFPT",
   "BasePath": "_content/TrainingFPT",
   "Mode": "Default",
@@ -38566,6 +38566,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\images\\b1c9dc17-72f7-44db-bd0d-c5fdb4fd6c48-2024-04-09.png"
+    },
+    {
+      "Identity": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\b60cfd13-84a0-474b-ae6d-b8a4a128002a-2024-04-16.jpg",
+      "SourceId": "TrainingFPT",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\",
+      "BasePath": "_content/TrainingFPT",
+      "RelativePath": "uploads/images/b60cfd13-84a0-474b-ae6d-b8a4a128002a-2024-04-16.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\images\\b60cfd13-84a0-474b-ae6d-b8a4a128002a-2024-04-16.jpg"
     },
     {
       "Identity": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\b7dd6710-7b79-4097-87ff-0567ac4cdfc1-2024-04-08.jpg",

@@ -59,9 +59,8 @@ namespace TrainingFPT.Controllers
                    
                     return View(category);
                 }
-
              
-                var maxSize = 5 * 1024 * 1024; // 5MB
+                var maxSize = 5 * 1024 * 1024;
                 if (PosterImage.Length > maxSize)
                 {
                     ModelState.AddModelError("PosterImage", $"Maximum allowed file size is {maxSize} bytes.");
@@ -70,7 +69,6 @@ namespace TrainingFPT.Controllers
                 }
             }
 
-          
             if (ModelState.IsValid)
             {
                

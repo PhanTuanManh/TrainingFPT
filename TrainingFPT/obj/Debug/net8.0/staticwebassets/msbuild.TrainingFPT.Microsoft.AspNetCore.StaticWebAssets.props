@@ -32448,6 +32448,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\images\b1c9dc17-72f7-44db-bd0d-c5fdb4fd6c48-2024-04-09.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\images\b60cfd13-84a0-474b-ae6d-b8a4a128002a-2024-04-16.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>TrainingFPT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TrainingFPT</BasePath>
+      <RelativePath>uploads/images/b60cfd13-84a0-474b-ae6d-b8a4a128002a-2024-04-16.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\images\b60cfd13-84a0-474b-ae6d-b8a4a128002a-2024-04-16.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\images\b7dd6710-7b79-4097-87ff-0567ac4cdfc1-2024-04-08.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>TrainingFPT</SourceId>
