@@ -7741,6 +7741,10 @@
       "PackagePath": "staticwebassets\\uploads\\images\\19fcbfb5-458d-4998-8c4d-cdae41dd31d8-2024-04-13.jpg"
     },
     {
+      "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\1a157cf3-e692-4d3b-a022-06a68db60d9e-2024-04-14.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\1a157cf3-e692-4d3b-a022-06a68db60d9e-2024-04-14.jpg"
+    },
+    {
       "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\1a6f6055-f406-4192-882f-950da22d38c8-2024-04-09.jpg",
       "PackagePath": "staticwebassets\\uploads\\images\\1a6f6055-f406-4192-882f-950da22d38c8-2024-04-09.jpg"
     },
@@ -7771,6 +7775,10 @@
     {
       "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\2a61943e-6374-4827-a370-0500f7e13cad-2024-04-09.docx",
       "PackagePath": "staticwebassets\\uploads\\images\\2a61943e-6374-4827-a370-0500f7e13cad-2024-04-09.docx"
+    },
+    {
+      "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\2d15ea6d-941d-49d0-9cd4-268a4771f74b-2024-04-14.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\2d15ea6d-941d-49d0-9cd4-268a4771f74b-2024-04-14.jpg"
     },
     {
       "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\2dc5c8c9-3d62-40e6-a37f-2160b8ff8579-2024-04-12.jpg",
@@ -8089,6 +8097,10 @@
       "PackagePath": "staticwebassets\\uploads\\images\\aac708ae-47f7-4c85-b1af-34c41aea12af-2024-04-09.docx"
     },
     {
+      "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\ab849a35-9957-4895-af5c-dc5a1b3ab6dc-2024-04-15.mp3",
+      "PackagePath": "staticwebassets\\uploads\\images\\ab849a35-9957-4895-af5c-dc5a1b3ab6dc-2024-04-15.mp3"
+    },
+    {
       "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\ae4a556d-4d7e-4660-8c3b-08453ba1a66e-2024-04-09.mp3",
       "PackagePath": "staticwebassets\\uploads\\images\\ae4a556d-4d7e-4660-8c3b-08453ba1a66e-2024-04-09.mp3"
     },
@@ -8103,6 +8115,14 @@
     {
       "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\b7dd6710-7b79-4097-87ff-0567ac4cdfc1-2024-04-08.jpg",
       "PackagePath": "staticwebassets\\uploads\\images\\b7dd6710-7b79-4097-87ff-0567ac4cdfc1-2024-04-08.jpg"
+    },
+    {
+      "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\b9412999-7e14-43f1-abfb-1b925b34027c-2024-04-14.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\b9412999-7e14-43f1-abfb-1b925b34027c-2024-04-14.jpg"
+    },
+    {
+      "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\b947cd29-8b4a-4279-b4d1-3178d76257e9-2024-04-15.png",
+      "PackagePath": "staticwebassets\\uploads\\images\\b947cd29-8b4a-4279-b4d1-3178d76257e9-2024-04-15.png"
     },
     {
       "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\b9f95314-ad84-4a54-b635-fbb4da8e1fdf-2024-03-26.png",
@@ -8153,6 +8173,14 @@
       "PackagePath": "staticwebassets\\uploads\\images\\cf359720-1020-426b-b0c2-65e5d0ea6600-2024-04-13.mp3"
     },
     {
+      "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\d03afdf1-e8cf-48ae-802d-00d968391f30-2024-04-14.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\d03afdf1-e8cf-48ae-802d-00d968391f30-2024-04-14.jpg"
+    },
+    {
+      "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\d32d88c0-bfeb-470d-80fe-48905b1bb2ae-2024-04-15.png",
+      "PackagePath": "staticwebassets\\uploads\\images\\d32d88c0-bfeb-470d-80fe-48905b1bb2ae-2024-04-15.png"
+    },
+    {
       "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\d4f80131-0eff-4ad7-891e-215348b784f3-2024-04-09.mp3",
       "PackagePath": "staticwebassets\\uploads\\images\\d4f80131-0eff-4ad7-891e-215348b784f3-2024-04-09.mp3"
     },
@@ -8201,12 +8229,24 @@
       "PackagePath": "staticwebassets\\uploads\\images\\e4e04c8a-da66-4a97-b340-3ddf175c712d-2024-04-09.mp4"
     },
     {
+      "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\e80fe07b-7fca-424c-9513-d41320097f76-2024-04-13.docx",
+      "PackagePath": "staticwebassets\\uploads\\images\\e80fe07b-7fca-424c-9513-d41320097f76-2024-04-13.docx"
+    },
+    {
+      "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\e8452c17-f0a0-41e7-81f1-e8ce58707b8f-2024-04-15.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\e8452c17-f0a0-41e7-81f1-e8ce58707b8f-2024-04-15.jpg"
+    },
+    {
       "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\e9ece7bb-bb2e-4dfb-8f82-568924822c4f-2024-04-09.png",
       "PackagePath": "staticwebassets\\uploads\\images\\e9ece7bb-bb2e-4dfb-8f82-568924822c4f-2024-04-09.png"
     },
     {
       "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\e9fc432d-73f4-4830-9c52-06c40a423c1a-2024-04-09.pdf",
       "PackagePath": "staticwebassets\\uploads\\images\\e9fc432d-73f4-4830-9c52-06c40a423c1a-2024-04-09.pdf"
+    },
+    {
+      "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\ea442442-fd3d-44e0-961f-7dc98cf7cdc4-2024-04-14.jpg",
+      "PackagePath": "staticwebassets\\uploads\\images\\ea442442-fd3d-44e0-961f-7dc98cf7cdc4-2024-04-14.jpg"
     },
     {
       "Id": "D:\\DEV\\AD-IT0503-ASP-MVC\\TrainingFPT\\wwwroot\\uploads\\images\\edddca2b-66fc-4592-9863-3d81cef1f51b-2024-04-13.jpg",

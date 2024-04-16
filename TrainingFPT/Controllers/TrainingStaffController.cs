@@ -62,8 +62,7 @@ namespace TrainingFPT.Controllers
         {
             if (ModelState.IsValid)
             {
-                // khong co loi tu phia nguoi dung
-                // upload file va lay dc ten file save database
+               
                 string avatarNameFile = null;
                 if (AvatarFile != null)
                 {
@@ -75,6 +74,8 @@ namespace TrainingFPT.Controllers
                         ModelState.AddModelError("AvatarFile", "Invalid file format. Only PNG, JPG, and JPEG formats are allowed.");
                         return View(user);
                     }
+
+                    avatarNameFile = UploadFileHelper.UploadFile(AvatarFile);
                 }
 
                 try

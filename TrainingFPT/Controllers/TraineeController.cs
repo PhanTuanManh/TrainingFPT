@@ -76,6 +76,7 @@ namespace TrainingFPT.Controllers
                         ModelState.AddModelError("AvatarFile", "Invalid file format. Only PNG, JPG, and JPEG formats are allowed.");
                         return View(user);
                     }
+                    avatarNameFile = UploadFileHelper.UploadFile(AvatarFile);
                 }
                    
                     try

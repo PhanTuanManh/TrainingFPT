@@ -49,32 +49,31 @@ namespace TrainingFPT.Controllers
         {
             if (PosterImage != null && PosterImage.Length > 0)
             {
-                // Kiểm tra loại tệp tin của PosterImage
+                
                 var allowedExtensions = new string[] { ".png", ".jpg", ".jpeg" };
                 var fileExtension = Path.GetExtension(PosterImage.FileName).ToLower();
 
                 if (!allowedExtensions.Contains(fileExtension))
                 {
                     ModelState.AddModelError("PosterImage", "Invalid file format. Only PNG, JPG, and JPEG formats are allowed.");
-                    // Trả về View với lỗi
+                   
                     return View(category);
                 }
 
-                // Kiểm tra kích thước của PosterImage
+             
                 var maxSize = 5 * 1024 * 1024; // 5MB
                 if (PosterImage.Length > maxSize)
                 {
                     ModelState.AddModelError("PosterImage", $"Maximum allowed file size is {maxSize} bytes.");
-                    // Trả về View với lỗi
+                   
                     return View(category);
                 }
             }
 
-            // ModelState.IsValid sẽ kiểm tra các điều kiện đối với các thuộc tính khác của category
+          
             if (ModelState.IsValid)
             {
-                // Không có lỗi từ phía người dùng
-                // Upload file và lấy tên file để lưu vào cơ sở dữ liệu
+               
                 string filePosterImage = UploadFileHelper.UploadFile(PosterImage);
 
                 try
@@ -96,7 +95,7 @@ namespace TrainingFPT.Controllers
                 return RedirectToAction(nameof(CategoryController.Index), "Category");
             }
 
-            // Nếu có lỗi ModelState.IsValid, trả về View với dữ liệu của category
+            
             return View(category);
         }
 

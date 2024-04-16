@@ -10,13 +10,13 @@
     border-color: #1a1215;
 }
 
-    .btn-primary:hover {
+.btn-primary:hover {
         color: #fff;
         background-color: #6c6d6f;
         border-color: #947b7b;
     }
 
-    .btn-primary:hovere:active {
+.btn-primary:active {
         color: #fff;
         background-color: #f23f3f;
         border-color: #ff0000;
