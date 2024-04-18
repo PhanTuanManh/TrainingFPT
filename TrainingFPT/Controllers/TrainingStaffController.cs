@@ -11,10 +11,7 @@ namespace TrainingFPT.Controllers
         [HttpGet]
         public IActionResult Index(string SearchString, string Status)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SessionUsername")))
-            {
-                return RedirectToAction(nameof(LoginController.Index), "Login");
-            }
+       
             UserViewModel userViewModel = new UserViewModel();
             userViewModel.UserDetailList = new List<UserDetail>();
             var dataUser = new UserQuery().GetAllUsers(SearchString, Status, 2);

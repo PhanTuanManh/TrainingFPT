@@ -1,76 +1,48 @@
-﻿@*
+﻿﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
 @model TrainingFPT.Models.LoginViewModel
 
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
 
+<div class="row justify-content-center" style="margin-top: 5rem;">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
 
+                                @if (ViewData["MessageLogin"] != null)
+                                {
+                                    <p class="text-danger">@ViewData["MessageLogin"]</p>
+                                }
 
-<!doctype html>
-<html lang="en">
-
-<head>
-    <title>Login</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="./training/css/style.css">
-
-</head>
-
-<body class="img js-fullheight" style="background-image: url(./uploads/Images/bg.jpg);">
-    <section class="ftco-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-4">
-                    <div class="login-wrap p-0">
-                        <h3 class="mb-4 text-center">Have an account?</h3>
-                        <form method="post" action="@Url.Action("Index", "Login")" class="signin-form">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Username" required name="UserName" value="@Model.UserName">
                             </div>
-                            <div class="form-group">
-                                <input id="password-field" type="password" class="form-control" placeholder="Password"
-                                       required name="Password" value="@Model.Password">
-                                <span toggle="#password-field"
-                                      class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
-                            </div>
-                            <div class="form-group d-md-flex">
-                                <div class="w-50">
-                                    <label class="checkbox-wrap checkbox-primary">
-                                        Remember Me
-                                        <input type="checkbox" checked>
-                                        <span class="checkmark"></span>
-                                    </label>
+
+                            @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "user" }))
+                            {
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control form-control-user" })
                                 </div>
-                                <div class="w-50 text-md-right">
-                                    <a href="#" style="color: #fff">Forgot Password</a>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-user" })
                                 </div>
-                            </div>
-                        </form>
-                        @if (!string.IsNullOrEmpty(ViewData["MessageLogin"] as string))
-                        {
-                            <p class="text-danger">@ViewData["MessageLogin"]</p>
-                        }
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Login
+                                </button>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <script src="./training/js/jquery.min.js"></script>
-    <script src="./training/js/popper.js"></script>
-    <script src="./training/js/bootstrap.min.js"></script>
-    <script src="./training/js/main.js"></script>
-
-</body>
-
-</html>
+    </div>
+</div>

@@ -10,10 +10,7 @@ namespace TrainingFPT.Controllers
         [HttpGet]
         public IActionResult Index(string SearchString, string Status)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SessionUsername")))
-            {
-                return RedirectToAction(nameof(LoginController.Index), "Login");
-            }
+       
 
             CategoryViewModel categoryViewModel = new CategoryViewModel();
             categoryViewModel.CategoryDetailList = new List<CategoryDetail>();

@@ -138,6 +138,7 @@ namespace TrainingFPT.Models.Queries
                         categoryDetail.PosterNameImage = reader["PosterImage"].ToString();
                         categoryDetail.Status = reader["Status"].ToString();
                         categoryDetail.CreatedAt = Convert.ToDateTime(reader["CreatedAt"]);
+                        categoryDetail.UpdatedAt = reader["UpdatedAt"] != DBNull.Value ? Convert.ToDateTime(reader["UpdatedAt"]) : DateTime.MinValue;
                         category.Add(categoryDetail);
                     }
                     conn.Close();

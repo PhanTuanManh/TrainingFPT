@@ -75,17 +75,26 @@ namespace TrainingFPT.Models.Queries
         {
             string dataKeyword = "%" + keyword + "%";
             List<CourseDetail> courses = new List<CourseDetail>();
-            Dictionary<int, string> categryName = new Dictionary<int, string>();
+            Dictionary<int, string> categoryName = new Dictionary<int, string>();
+
             using (SqlConnection connection = Database.GetSqlConnection())
             {
                 string sqlQuery = string.Empty;
                 if (filter != null)
                 {
-                    sqlQuery = "SELECT * FROM [Courses] WHERE [NameCourse] LIKE @keyword AND [DeletedAt] IS NULL AND [Status] = @status";
+                    sqlQuery = "SELECT [co].*, [ca].[Name] AS CategoryName " +
+                               "FROM [Courses] AS [co] " +
+                               "INNER JOIN [Categories] AS [ca] ON [co].[CategoryId] = [ca].[Id] " +
+                               "WHERE ([co].[NameCourse] LIKE @keyword OR [ca].[Name] LIKE @keyword) " +
+                               "AND [co].[DeletedAt] IS NULL AND [co].[Status] = @status";
                 }
                 else
                 {
-                    sqlQuery = "SELECT * FROM [Courses] WHERE [NameCourse] LIKE @keyword AND [DeletedAt] IS NULL";
+                    sqlQuery = "SELECT [co].*, [ca].[Name] AS CategoryName " +
+                               "FROM [Courses] AS [co] " +
+                               "INNER JOIN [Categories] AS [ca] ON [co].[CategoryId] = [ca].[Id] " +
+                               "WHERE ([co].[NameCourse] LIKE @keyword OR [ca].[Name] LIKE @keyword) " +
+                               "AND [co].[DeletedAt] IS NULL";
                 }
 
                 SqlCommand cmd = new SqlCommand(sqlQuery, connection);
@@ -95,22 +104,21 @@ namespace TrainingFPT.Models.Queries
                     cmd.Parameters.AddWithValue("@status", filter ?? DBNull.Value.ToString());
                 }
 
-
-                string sql = "SELECT [co].*, [ca].[Name] FROM [Courses] AS [co] INNER JOIN [Categories] AS [ca] ON [co].[CategoryId] = [ca].[Id] WHERE [co].[DeletedAt] IS NULL";
                 connection.Open();
+
+                // Execute the query to get category names
                 using (SqlCommand cmdCategories = new SqlCommand("SELECT Id, Name FROM Categories", connection))
                 {
                     using (SqlDataReader readerCategories = cmdCategories.ExecuteReader())
                     {
                         while (readerCategories.Read())
                         {
-                            categryName.Add(Convert.ToInt32(readerCategories["Id"]), readerCategories["Name"].ToString());
+                            categoryName.Add(Convert.ToInt32(readerCategories["Id"]), readerCategories["Name"].ToString());
                         }
                     }
                 }
-                connection.Close();
-                connection.Open();
-                //SqlCommand cmd = new SqlCommand(sql, connection);
+
+                // Execute the main query to get course details
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -125,17 +133,24 @@ namespace TrainingFPT.Models.Queries
                         detail.ViewImageCouser = reader["Image"].ToString();
                         detail.Status = reader["Status"].ToString();
                         detail.viewCategoryName = reader["CategoryId"].ToString();
-                        if (categryName.ContainsKey(detail.CategoryId))
+
+                        // Get the category name from the dictionary
+                        if (categoryName.ContainsKey(detail.CategoryId))
                         {
-                            detail.NameCategory = categryName[detail.CategoryId];
+                            detail.NameCategory = categoryName[detail.CategoryId];
                         }
+
                         courses.Add(detail);
                     }
                 }
+
                 connection.Close();
             }
+
             return courses;
         }
+
+
         //method insert course
         public int InsetDataCourse(
             string nameCourse,

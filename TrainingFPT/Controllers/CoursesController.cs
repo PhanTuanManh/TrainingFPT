@@ -32,7 +32,7 @@ namespace TrainingFPT.Controllers
             }
             ViewData["keyword"] = SearchString;
             ViewBag.Status = Status;
-            return View(course);
+            return View("Index", course);
         }
 
         [HttpGet]
@@ -50,7 +50,7 @@ namespace TrainingFPT.Controllers
                 });
             }
             ViewBag.Categories = items;
-            return View(course);
+            return View("Add", course);
         }
 
         [HttpPost]
@@ -102,7 +102,7 @@ namespace TrainingFPT.Controllers
                 });
             }
             ViewBag.Categories = items;
-            return View(course);
+            return View("Add", course);
         }
         [HttpGet]
         public IActionResult Edit(int id = 0)

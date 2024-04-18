@@ -5,75 +5,89 @@ namespace TrainingFPT.Models.Queries
     public class TopicQuery
     {
         public List<TopicDetail> GetAllTopics(string? keyword, string? filterStatus)
-    {
-        string dataKeyword = "%" + keyword + "%";
-        List<TopicDetail> Topic = new List<TopicDetail>();
-        Dictionary<int, string> courseNames = new Dictionary<int, string>();
-
-        using (SqlConnection conn = Database.GetSqlConnection())
         {
-            string sqlQuery = string.Empty;
-                sqlQuery = "SELECT * FROM [Topics] WHERE [NameTopic] LIKE @keyword AND [DeletedAt] IS NULL";
+            string dataKeyword = "%" + keyword + "%";
+            List<TopicDetail> topics = new List<TopicDetail>();
+            Dictionary<int, string> courseNames = new Dictionary<int, string>();
+
+            using (SqlConnection conn = Database.GetSqlConnection())
+            {
+                string sqlQuery = string.Empty;
                 if (filterStatus != null)
                 {
-                    sqlQuery += " AND [Status] = @status";
+                    sqlQuery = "SELECT [top].*, [co].[NameCourse] " +
+                               "FROM [Topics] AS [top] " +
+                               "INNER JOIN [Courses] AS [co] ON [top].[CouresId] = [co].[Id] " +
+                               "WHERE [co].[NameCourse] LIKE @keyword AND [top].[DeletedAt] IS NULL AND [top].[Status] = @status";
                 }
+                else
+                {
+                    sqlQuery = "SELECT [top].*, [co].[NameCourse] " +
+                               "FROM [Topics] AS [top] " +
+                               "INNER JOIN [Courses] AS [co] ON [top].[CouresId] = [co].[Id] " +
+                               "WHERE [co].[NameCourse] LIKE @keyword AND [top].[DeletedAt] IS NULL";
+                }
+
                 SqlCommand cmd = new SqlCommand(sqlQuery, conn);
-            cmd.Parameters.AddWithValue("@keyword", dataKeyword ?? DBNull.Value.ToString());
-            if (filterStatus != null)
-            {
-                cmd.Parameters.AddWithValue("@status", filterStatus ?? DBNull.Value.ToString());
-            }
-
-
-            conn.Open();
-            using (SqlCommand cmdCourses = new SqlCommand("SELECT Id, NameCourse FROM Courses", conn))
-            {
-                using (SqlDataReader readerCourses = cmdCourses.ExecuteReader())
+                cmd.Parameters.AddWithValue("@keyword", dataKeyword ?? DBNull.Value.ToString());
+                if (filterStatus != null)
                 {
-                    while (readerCourses.Read())
+                    cmd.Parameters.AddWithValue("@status", filterStatus ?? DBNull.Value.ToString());
+                }
+
+                conn.Open();
+
+                // Execute the query to get course names
+                using (SqlCommand cmdCourses = new SqlCommand("SELECT Id, NameCourse FROM Courses", conn))
+                {
+                    using (SqlDataReader readerCourses = cmdCourses.ExecuteReader())
                     {
-                        courseNames.Add(Convert.ToInt32(readerCourses["Id"]), readerCourses["NameCourse"].ToString());
+                        while (readerCourses.Read())
+                        {
+                            courseNames.Add(Convert.ToInt32(readerCourses["Id"]), readerCourses["NameCourse"].ToString());
+                        }
                     }
                 }
-            }
-            conn.Close();
 
-
-            conn.Open();
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
+                // Execute the main query to get topic details
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    TopicDetail topicDetail = new TopicDetail();
-                    topicDetail.Id = Convert.ToInt32(reader["Id"]);
-                    topicDetail.CourseId = Convert.ToInt32(reader["CouresId"]);
-                    topicDetail.Name = reader["NameTopic"].ToString();
-                    topicDetail.Description = reader["Description"].ToString();
-                    topicDetail.NameVideo = reader["Video"].ToString();
-                    topicDetail.NameAudio = reader["Audio"].ToString();
-                    topicDetail.DocumentNameTopic = reader["DocumentTopic"].ToString();
-                    topicDetail.Status = reader["Status"].ToString();
-                    topicDetail.Like = Convert.ToInt32(reader["LikeTopic"]);
-                    topicDetail.Star = Convert.ToInt32(reader["StarTopic"]);
-                    topicDetail.CreatedAt = Convert.ToDateTime(reader["CreatedAt"]);
-                    topicDetail.UpdatedAt = reader["UpdatedAt"] != DBNull.Value ? Convert.ToDateTime(reader["UpdatedAt"]) : DateTime.MinValue;
-                    topicDetail.DeletedAt = reader["DeletedAt"] != DBNull.Value ? Convert.ToDateTime(reader["DeletedAt"]) : DateTime.MinValue;
-                    if (courseNames.ContainsKey(topicDetail.CourseId))
+                    while (reader.Read())
                     {
-                        topicDetail.NameCourse = courseNames[topicDetail.CourseId];
-                    }
-                    Topic.Add(topicDetail);
+                        TopicDetail topicDetail = new TopicDetail();
+                        topicDetail.Id = Convert.ToInt32(reader["Id"]);
+                        topicDetail.CourseId = Convert.ToInt32(reader["CouresId"]);
+                        topicDetail.Name = reader["NameTopic"].ToString();
+                        topicDetail.Description = reader["Description"].ToString();
+                        topicDetail.NameVideo = reader["Video"].ToString();
+                        topicDetail.NameAudio = reader["Audio"].ToString();
+                        topicDetail.DocumentNameTopic = reader["DocumentTopic"].ToString();
+                        topicDetail.Status = reader["Status"].ToString();
+                        topicDetail.Like = Convert.ToInt32(reader["LikeTopic"]);
+                        topicDetail.Star = Convert.ToInt32(reader["StarTopic"]);
+                        topicDetail.CreatedAt = Convert.ToDateTime(reader["CreatedAt"]);
+                        topicDetail.UpdatedAt = reader["UpdatedAt"] != DBNull.Value ? Convert.ToDateTime(reader["UpdatedAt"]) : DateTime.MinValue;
+                        topicDetail.DeletedAt = reader["DeletedAt"] != DBNull.Value ? Convert.ToDateTime(reader["DeletedAt"]) : DateTime.MinValue;
 
+                        // Get the course name from the dictionary
+                        if (courseNames.ContainsKey(topicDetail.CourseId))
+                        {
+                            topicDetail.NameCourse = courseNames[topicDetail.CourseId];
+                        }
+
+                        topics.Add(topicDetail);
+                    }
                 }
+
                 conn.Close();
             }
 
+            return topics;
         }
-        return Topic;
-    }
 
-   
+
+
+
         public int InsertItemTopic(
           string name,
           int courseId,

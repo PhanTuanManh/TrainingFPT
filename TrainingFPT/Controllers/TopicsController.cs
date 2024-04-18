@@ -12,10 +12,7 @@ namespace TrainingFPT.Controllers
         [HttpGet]
         public IActionResult Index(string SearchString, string Status)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SessionUsername")))
-            {
-                return RedirectToAction(nameof(LoginController.Index), "Login");
-            }
+
             TopicViewModel topicViewModel = new TopicViewModel();
             topicViewModel.TopicDetailList = new List<TopicDetail>();
             var dataCategory = new TopicQuery().GetAllTopics(SearchString, Status);
@@ -39,7 +36,7 @@ namespace TrainingFPT.Controllers
             }
             ViewData["keyword"] = SearchString;
             ViewBag.Status = Status;
-            return View(topicViewModel);
+            return View("Index",topicViewModel);
         }
         [HttpGet]
         public IActionResult Add()
@@ -59,7 +56,7 @@ namespace TrainingFPT.Controllers
             IEnumerable<TopicDetail> topicDetails = topicViewModel.TopicDetailList;
             ViewBag.topicViewModel = topicDetails;
             TopicDetail model = new TopicDetail();
-            return View(model);
+            return View("Add", model); // Trả về view "Add"
         }
 
 
@@ -87,7 +84,7 @@ namespace TrainingFPT.Controllers
                 IEnumerable<TopicDetail> topicDetails = topicViewModel.TopicDetailList;
                 ViewBag.topicViewModel = topicDetails;
 
-                return View(topic);
+                return View("Add",topic);
             }
             if (VideoFile != null)
             {
@@ -100,7 +97,7 @@ namespace TrainingFPT.Controllers
                     // Trả về View với lỗi
                     var dataCourse = new TopicQuery().GetCourse();
                     ViewBag.topicViewModel = dataCourse;
-                    return View(topic);
+                    return View("Add", topic);
                 }
 
                 fileVideo = UploadFileHelper.UploadFile(VideoFile);
@@ -124,7 +121,7 @@ namespace TrainingFPT.Controllers
                     // Trả về View với lỗi
                     var dataCourse = new TopicQuery().GetCourse();
                     ViewBag.topicViewModel = dataCourse;
-                    return View(topic);
+                    return View("Add", topic);
                 }
 
                 fileAudio = UploadFileHelper.UploadFile(AudioFile);
@@ -144,7 +141,7 @@ namespace TrainingFPT.Controllers
                     // Trả về View với lỗi
                     var dataCourse = new TopicQuery().GetCourse();
                     ViewBag.topicViewModel = dataCourse;
-                    return View(topic);
+                    return View("Add", topic);
                 }
 
                 fileDocumentTopic = UploadFileHelper.UploadFile(DocumentFile);
@@ -186,10 +183,10 @@ namespace TrainingFPT.Controllers
                 }
                 IEnumerable<TopicDetail> topicDetails = topicViewModel.TopicDetailList;
                 ViewBag.topicViewModel = topicDetails;
-                return View(topic);
+                return View("Add", topic);
             }
 
-            return View(topic);
+            return View("Add", topic);
         }
 
         [HttpGet]
